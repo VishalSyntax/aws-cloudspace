@@ -7,7 +7,7 @@ I'm learning AWS by building real projects, one at a time. Everything here is do
 | # | Project               | AWS Services                                 | Status        |
 |---|-----------------------|----------------------------------------------|---------------|
 | 1 | EC2 Web Server        | EC2, Security Groups                         | ✅ Completed  |
-| 2 | S3 Static Website     | S3                                           | Not Started   |
-| 3 | Secure IAM User       | IAM, MFA                                     | Not Started   |
+| 2 | S3 Static Website     | S3                                           | ✅ Completed  |
+| 3 | Secure IAM User       | IAM, MFA                                     | In Progress   |
 | 4 | Custom VPC            | VPC, Subnets, Route Tables, Internet Gateway | Not Started   |
 | 5 | EC2 Inside Custom VPC | EC2, VPC, Security Groups                    | Not Started   |
