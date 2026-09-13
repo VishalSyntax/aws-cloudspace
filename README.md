@@ -16,5 +16,5 @@ A structured AWS learning path — 20 projects from beginner to advanced, all bu
 | 6 | RDS Database | RDS, VPC, Security Groups | ✅ Completed | [👁️](./06-rds-database/README.md) |
 | 7 | Two-Tier Web App | EC2, RDS, VPC, Security Groups | ✅ Completed | [👁️](./07-two-tier-web-app/README.md) |
 | 8 | Auto Scaling Group | EC2, ASG, Launch Template | ✅ Completed | [👁️](./08-auto-scaling-group/README.md) |
-| 9 | Load Balancer | ALB, EC2, Target Groups | In Progress | [👁️](./09-load-balancer/README.md) |
+| 9 | Load Balancer | ALB, EC2, Target Groups | ✅ Completed | [👁️](./09-load-balancer/README.md) |
 | 10 | S3 + CloudFront CDN | S3, CloudFront | Not Started | [👁️](./10-s3-cloudfront/README.md) |
