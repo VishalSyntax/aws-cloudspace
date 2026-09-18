@@ -2,6 +2,8 @@
 
 A structured AWS learning path — 20 projects from beginner to advanced, all built hands-on through the AWS Console. Each project has real screenshots, commands, architecture diagrams, and notes from when I actually built it.
 
+> 🌐 Browse the full project site: [vishalSyntax.github.io/aws-cloudspace](https://VishalSyntax.github.io/aws-cloudspace/)
+
 > Also check out [aws-cloudspace-labs](https://github.com/VishalSyntax/aws-cloudspace-labs) — hands-on AWS labs from my mentorship program.
 
 ## Projects
@@ -17,4 +19,6 @@ A structured AWS learning path — 20 projects from beginner to advanced, all bu
 | 7 | Two-Tier Web App | EC2, RDS, VPC, Security Groups | ✅ Completed | [👁️](./07-two-tier-web-app/README.md) |
 | 8 | Auto Scaling Group | EC2, ASG, Launch Template | ✅ Completed | [👁️](./08-auto-scaling-group/README.md) |
 | 9 | Load Balancer | ALB, EC2, Target Groups | ✅ Completed | [👁️](./09-load-balancer/README.md) |
-| 10 | S3 + CloudFront CDN | S3, CloudFront | Not Started | [👁️](./10-s3-cloudfront/README.md) |
+| 10 | S3 + CloudFront CDN | S3, CloudFront | ✅ Completed | [👁️](./10-s3-cloudfront/README.md) |
+| 11 | Create an SNS Notification System | SNS, CloudWatch | In Progrss | [👁️](./11-sns-notification-system/README.md) |
+| 12 | Build Your First Serverless Function with Lambda | Lambda, IAM, CloudWatch | Not Started | [👁️](./12-lambda-serverless-function/README.md) |
