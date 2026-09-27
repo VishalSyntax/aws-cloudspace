@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../07-two-tier-web-app/">
+        <link rel="prev" href="../10-cloudwatch-ec2/">
       
       
-        <link rel="next" href="../09-load-balancer/">
+        <link rel="next" href="../12-lambda-serverless-function/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>08 · Auto Scaling Group - AWS Cloudspace</title>
+        <title>11 · SNS Notification System - AWS Cloudspace</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#auto-scaling-group" class="md-skip">
+        <a href="#sns-notification-system" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              08 · Auto Scaling Group
+              11 · SNS Notification System
             
           </span>
         </div>
@@ -533,37 +533,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    08 · Auto Scaling Group
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../08-auto-scaling-group/" class="md-nav__link">
         
   
   
@@ -579,208 +552,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-i-built" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What I built
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-auto-scaling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why Auto Scaling
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#services-used" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Services used
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resources-i-created" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resources I created
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Steps
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Steps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-created-a-launch-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Created a Launch Template
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-created-the-auto-scaling-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Created the Auto Scaling Group
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-verified-instance-launched" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Verified instance launched
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-tested-scaling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Tested scaling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-cleaned-up" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Cleaned up
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#screenshots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Screenshots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commands
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#things-that-can-go-wrong" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Things that can go wrong
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security notes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cost" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cost
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-i-learned" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What I learned
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -846,10 +617,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../11-sns-notification-system/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · SNS Notification System
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -865,6 +663,230 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-sns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why SNS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources-i-created" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources I created
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-created-the-sns-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Created the SNS topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-added-an-email-subscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Added an email subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-published-a-test-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Published a test message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-connected-to-a-cloudwatch-alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Connected to a CloudWatch alarm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-triggered-the-alarm-and-verified-the-notification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Triggered the alarm and verified the notification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-cleaned-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Cleaned up
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#screenshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Screenshots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#things-that-can-go-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things that can go wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -971,10 +993,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-auto-scaling" class="md-nav__link">
+  <a href="#why-sns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Auto Scaling
+        Why SNS
       
     </span>
   </a>
@@ -1016,10 +1038,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-created-a-launch-template" class="md-nav__link">
+  <a href="#1-created-the-sns-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Created a Launch Template
+        1. Created the SNS topic
       
     </span>
   </a>
@@ -1027,10 +1049,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-created-the-auto-scaling-group" class="md-nav__link">
+  <a href="#2-added-an-email-subscription" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Created the Auto Scaling Group
+        2. Added an email subscription
       
     </span>
   </a>
@@ -1038,10 +1060,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-verified-instance-launched" class="md-nav__link">
+  <a href="#3-published-a-test-message" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Verified instance launched
+        3. Published a test message
       
     </span>
   </a>
@@ -1049,10 +1071,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-tested-scaling" class="md-nav__link">
+  <a href="#4-connected-to-a-cloudwatch-alarm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Tested scaling
+        4. Connected to a CloudWatch alarm
       
     </span>
   </a>
@@ -1060,10 +1082,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-cleaned-up" class="md-nav__link">
+  <a href="#5-triggered-the-alarm-and-verified-the-notification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Cleaned up
+        5. Triggered the alarm and verified the notification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-cleaned-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Cleaned up
       
     </span>
   </a>
@@ -1098,6 +1131,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#things-that-can-go-wrong" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1109,10 +1153,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#security-considerations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security notes
+        Security considerations
       
     </span>
   </a>
@@ -1158,13 +1202,13 @@
 
 
 
-<h1 id="auto-scaling-group">Auto Scaling Group</h1>
-<p>Eighth project. Wanted to see how AWS handles automatic scaling — spinning up more EC2 instances when load increases and terminating them when it drops. This is one of those things that makes cloud different from running your own servers.</p>
+<h1 id="sns-notification-system">SNS Notification System</h1>
+<p>Eleventh project. Built a proper notification system using Amazon SNS — created a topic, added an email subscription, published a test message to verify delivery, then wired it to a CloudWatch alarm so the whole thing fires automatically when a condition is met.</p>
 <h2 id="what-i-built">What I built</h2>
-<p>An Auto Scaling Group with a Launch Template that automatically manages EC2 instances based on desired capacity and scaling policies.</p>
-<p><img alt="Architecture" src="architecture/architecture.png" /></p>
-<h2 id="why-auto-scaling">Why Auto Scaling</h2>
-<p>With a single EC2 instance, if traffic spikes the server gets overwhelmed. ASG solves that by automatically adding instances when needed and removing them when traffic drops. You only pay for what you use.</p>
+<p>An SNS topic with an email subscription connected to a CloudWatch alarm. When the alarm enters the In alarm state, SNS publishes a notification and the email arrives within seconds. I also published a manual test message first to confirm the subscription was working before relying on the alarm to trigger it.</p>
+<p><img alt="Architecture" src="./architecture/architecture.png" /></p>
+<h2 id="why-sns">Why SNS</h2>
+<p>CloudWatch can detect problems but it can't tell anyone about them on its own. SNS is the bridge — it takes an alarm state change and fans it out to whoever needs to know. One topic can notify an email address, a phone number, a Lambda function, and a webhook all at the same time. Setting this up means the system tells me when something is wrong instead of me having to watch dashboards.</p>
 <h2 id="services-used">Services used</h2>
 <table>
 <thead>
@@ -1175,20 +1219,12 @@
 </thead>
 <tbody>
 <tr>
-<td>EC2</td>
-<td>The instances that get launched automatically</td>
+<td>SNS</td>
+<td>The notification hub — receives events and fans out to subscribers</td>
 </tr>
 <tr>
-<td>Launch Template</td>
-<td>Blueprint for how each EC2 instance is created</td>
-</tr>
-<tr>
-<td>Auto Scaling Group</td>
-<td>Manages the number of running instances</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
+<td>CloudWatch</td>
+<td>Triggers the SNS topic when an alarm condition is met</td>
 </tr>
 </tbody>
 </table>
@@ -1206,85 +1242,86 @@
 <td>ap-south-1</td>
 </tr>
 <tr>
-<td>Launch Template</td>
-<td>my-launch-template</td>
+<td>SNS Topic Name</td>
+<td>fct-alerts</td>
 </tr>
 <tr>
-<td>AMI</td>
-<td>Amazon Linux 2023</td>
-</tr>
-<tr>
-<td>Instance Type</td>
-<td>t2.micro</td>
-</tr>
-<tr>
-<td>ASG Name</td>
-<td>my-asg</td>
-</tr>
-<tr>
-<td>Min instances</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Max instances</td>
-<td>3</td>
-</tr>
-<tr>
-<td>Desired</td>
-<td>1</td>
+<td>SNS Topic ARN</td>
+<td>arn:aws:sns:ap-south-1:019540875443:fct-alerts</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="steps">Steps</h2>
-<h3 id="1-created-a-launch-template">1. Created a Launch Template</h3>
-<p>EC2 → Launch Templates → Create launch template.</p>
-<ul>
-<li>Launch template name: <code>my-launch-template</code></li>
-<li>AMI: Amazon Linux 2023 (search in Quick Start)</li>
-<li>Instance type: <code>t3.micro</code></li>
-<li>Key pair: <code>awswin</code></li>
-<li>Network settings → Security groups: select an existing security group that allows SSH (port 22)</li>
-<li>Left everything else as default → Create launch template</li>
-</ul>
-<p><img alt="Launch Template" src="screenshots/01-launch-template.png" /></p>
+<h3 id="1-created-the-sns-topic">1. Created the SNS topic</h3>
+<ol>
+<li>Open the <strong>SNS</strong> console</li>
+<li>In the left sidebar click <strong>Topics</strong> → <strong>Create topic</strong></li>
+<li>On the Create topic page:</li>
+<li>Type: <strong>Standard</strong></li>
+<li>Name: <code>fct-alerts</code></li>
+<li>Leave everything else default</li>
+<li>Click <strong>Create topic</strong></li>
+<li>On the topic detail page, copy the <strong>Topic ARN</strong> — needed when connecting to CloudWatch</li>
+</ol>
+<p><img alt="Create SNS Topic" src="screenshots/01-create-sns-topic.png" /></p>
 <hr />
-<h3 id="2-created-the-auto-scaling-group">2. Created the Auto Scaling Group</h3>
-<p>EC2 → Auto Scaling Groups → Create Auto Scaling group.</p>
-<p><strong>Step 1 — Choose launch template:</strong>
-- Name: <code>my-asg</code>
-- Launch template: <code>my-launch-template</code> → Next</p>
-<p><strong>Step 2 — Choose instance launch options:</strong>
-- VPC: <code>my-custom-vpc</code>
-- Availability Zones and subnets: select both public subnets (one per AZ) → Next</p>
-<p><strong>Step 3 — Configure advanced options:</strong>
-- No load balancer for now → Next</p>
-<p><strong>Step 4 — Configure group size and scaling:</strong>
-- Desired capacity: <code>1</code>
-- Min desired capacity: <code>1</code>
-- Max desired capacity: <code>3</code>
-- No scaling policies → Next</p>
-<p><strong>Steps 5–7:</strong> Skip notifications and tags → Review → Create Auto Scaling group</p>
-<p><img alt="ASG Created" src="screenshots/02-asg-created.png" /></p>
+<h3 id="2-added-an-email-subscription">2. Added an email subscription</h3>
+<ol>
+<li>Still on the topic detail page, click the <strong>Subscriptions</strong> tab → <strong>Create subscription</strong></li>
+<li>On the Create subscription page:</li>
+<li>Protocol: <strong>Email</strong></li>
+<li>Endpoint: enter the email address to receive alerts</li>
+<li>Click <strong>Create subscription</strong></li>
+</ol>
+<p>The subscription status shows <strong>Pending confirmation</strong>. Go to the email inbox — AWS sends a confirmation email with subject <strong>AWS Notification - Subscription Confirmation</strong>. Click the <strong>Confirm subscription</strong> link inside it.</p>
+<p>To verify: SNS → Topics → <code>fct-alerts</code> → Subscriptions tab — status should show <strong>Confirmed</strong>. Notifications won't be delivered until this step is done.</p>
+<p><img alt="Subscription Pending" src="screenshots/02-subscription-pending.png" /></p>
+<p><img alt="Subscription Confirmed" src="screenshots/03-subscription-confirmed.png" /></p>
 <hr />
-<h3 id="3-verified-instance-launched">3. Verified instance launched</h3>
-<p>After creating the ASG, went to EC2 → Instances. One instance was already launching — ASG spun it up automatically to meet the desired count of 1. Waited for it to reach running state.</p>
-<p><img alt="Instance Launched" src="screenshots/03-instance-launched.png" /></p>
+<h3 id="3-published-a-test-message">3. Published a test message</h3>
+<ol>
+<li>SNS → Topics → click <code>fct-alerts</code></li>
+<li>Click <strong>Publish message</strong></li>
+<li>On the Publish message page:</li>
+<li>Subject: <code>Test Message</code></li>
+<li>Message body: <code>This is a test notification from SNS.</code></li>
+<li>Leave everything else default</li>
+<li>Click <strong>Publish message</strong></li>
+</ol>
+<p>The email arrived within a few seconds. This confirmed the subscription was working before connecting it to an alarm.</p>
+<p><img alt="Publish Test Message" src="screenshots/04-publish-test-message.png" /></p>
 <hr />
-<h3 id="4-tested-scaling">4. Tested scaling</h3>
-<p>EC2 → Auto Scaling Groups → select <code>my-asg</code> → Edit.</p>
-<ul>
-<li>Changed Desired capacity from <code>1</code> to <code>2</code> → Update</li>
-</ul>
-<p>Went back to EC2 → Instances — a second instance started launching within seconds. Both ended up running in different AZs.</p>
-<p><img alt="Scaling Test" src="screenshots/04-scaling-test.png" /></p>
+<h3 id="4-connected-to-a-cloudwatch-alarm">4. Connected to a CloudWatch alarm</h3>
+<ol>
+<li>Open the <strong>CloudWatch</strong> console</li>
+<li>In the left sidebar click <strong>Alarms</strong> → <strong>All alarms</strong></li>
+<li>Click the alarm name → <strong>Actions</strong> → <strong>Edit</strong></li>
+<li>Click <strong>Next</strong> to reach the <strong>Configure actions</strong> step</li>
+<li>On the Configure actions page:</li>
+<li>Alarm state trigger: <strong>In alarm</strong></li>
+<li>Send a notification to an SNS topic: select <code>fct-alerts</code></li>
+<li>Click <strong>Next</strong> → <strong>Update alarm</strong></li>
+</ol>
+<p>Now when the alarm enters <strong>In alarm</strong> state, it automatically publishes to the SNS topic and delivers to all confirmed subscribers.</p>
+<p><img alt="CloudWatch Alarm Connected" src="screenshots/05-cloudwatch-alarm-connected.png" /></p>
 <hr />
-<h3 id="5-cleaned-up">5. Cleaned up</h3>
-<p>EC2 → Auto Scaling Groups → select <code>my-asg</code> → Edit → set Desired, Min, and Max all to <code>0</code> → Update. Waited for both instances to terminate.</p>
-<p>Then:
-- Actions → Delete the ASG
-- EC2 → Launch Templates → select <code>my-launch-template</code> → Actions → Delete</p>
-<p><img alt="Cleanup" src="screenshots/05-cleanup.png" /></p>
+<h3 id="5-triggered-the-alarm-and-verified-the-notification">5. Triggered the alarm and verified the notification</h3>
+<p>SSH'd into the EC2 instance and generated CPU load:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>stress<span class="w"> </span>-y
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>stress<span class="w"> </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span>--timeout<span class="w"> </span><span class="m">300</span>
+</code></pre></div>
+<p>Back in the CloudWatch console:
+1. Click <strong>Alarms</strong> → <strong>All alarms</strong>
+2. Watched the alarm state change from <strong>OK</strong> → <strong>In alarm</strong>
+3. The email notification arrived within a couple of minutes</p>
+<p><img alt="Alarm Triggered" src="screenshots/06-alarm-triggered.png" /></p>
+<hr />
+<h3 id="6-cleaned-up">6. Cleaned up</h3>
+<ol>
+<li>SNS → <strong>Subscriptions</strong> → tick the subscription → <strong>Delete</strong> → confirm</li>
+<li>SNS → <strong>Topics</strong> → tick <code>fct-alerts</code> → <strong>Delete</strong> → type <code>delete me</code> to confirm → <strong>Delete</strong></li>
+</ol>
 <hr />
 <h2 id="screenshots">Screenshots</h2>
 <table>
@@ -1298,33 +1335,44 @@
 <tbody>
 <tr>
 <td>01</td>
-<td><code>screenshots/01-launch-template.png</code></td>
-<td>Launch template created</td>
+<td><code>screenshots/01-create-sns-topic.png</code></td>
+<td>SNS topic created</td>
 </tr>
 <tr>
 <td>02</td>
-<td><code>screenshots/02-asg-created.png</code></td>
-<td>ASG created</td>
+<td><code>screenshots/02-subscription-pending.png</code></td>
+<td>Email subscription pending confirmation</td>
 </tr>
 <tr>
 <td>03</td>
-<td><code>screenshots/03-instance-launched.png</code></td>
-<td>Instance auto-launched</td>
+<td><code>screenshots/03-subscription-confirmed.png</code></td>
+<td>Subscription confirmed</td>
 </tr>
 <tr>
 <td>04</td>
-<td><code>screenshots/04-scaling-test.png</code></td>
-<td>Scaling test</td>
+<td><code>screenshots/04-publish-test-message.png</code></td>
+<td>Manual test message published</td>
 </tr>
 <tr>
 <td>05</td>
-<td><code>screenshots/05-cleanup.png</code></td>
-<td>Cleanup done</td>
+<td><code>screenshots/05-cloudwatch-alarm-connected.png</code></td>
+<td>CloudWatch alarm with SNS attached</td>
+</tr>
+<tr>
+<td>06</td>
+<td><code>screenshots/06-alarm-triggered.png</code></td>
+<td>Email notification received</td>
 </tr>
 </tbody>
 </table>
 <h2 id="commands">Commands</h2>
-<p>See <a href="commands/commands/">commands/commands.md</a></p>
+<p>See <a href="./commands/commands.md">commands/commands.md</a></p>
+<hr />
+<h2 id="testing">Testing</h2>
+<ul>
+<li>Published a manual test message → email arrived within seconds</li>
+<li>Triggered a CloudWatch alarm via CPU stress test → SNS notification delivered automatically</li>
+</ul>
 <hr />
 <h2 id="things-that-can-go-wrong">Things that can go wrong</h2>
 <table>
@@ -1337,38 +1385,44 @@
 </thead>
 <tbody>
 <tr>
-<td>ASG not launching instances</td>
-<td>No subnets selected</td>
-<td>Added subnets in ASG network settings</td>
+<td>No confirmation email</td>
+<td>Email went to spam</td>
+<td>Checked spam folder</td>
 </tr>
 <tr>
-<td>Instance launches in wrong VPC</td>
-<td>Wrong subnet selected</td>
-<td>Selected subnets from my-custom-vpc</td>
+<td>Subscription stays Pending confirmation</td>
+<td>Confirmation link not clicked</td>
+<td>Clicked the link in the AWS email</td>
 </tr>
 <tr>
-<td>Can't delete ASG</td>
-<td>Instances still running</td>
-<td>Set desired to 0 first, waited for termination</td>
+<td>No notification when alarm fires</td>
+<td>SNS topic not attached to alarm</td>
+<td>Edited the alarm and added the SNS action</td>
+</tr>
+<tr>
+<td>Email arrives but alarm doesn't fire</td>
+<td>Stress test not running long enough</td>
+<td>Ran stress for 5 minutes, waited 2 consecutive 1-minute periods above threshold</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="security-notes">Security notes</h2>
+<h2 id="security-considerations">Security considerations</h2>
 <ul>
-<li>Launch template uses existing security group — no new ports opened</li>
-<li>Instances launched by ASG follow the same security rules as manually launched ones</li>
+<li>SNS topic only delivers to confirmed subscribers</li>
+<li>For production, restrict who can publish to the topic using an SNS access policy</li>
+<li>Don't commit real email addresses to documentation</li>
 </ul>
 <hr />
 <h2 id="cost">Cost</h2>
-<p>t2.micro is free tier. ASG itself has no cost — you pay for the EC2 instances it launches. Always set desired to 0 or delete the ASG after testing.</p>
+<p>SNS email notifications are free for the first 1,000 per month. SMS notifications cost per message. Delete the topic and subscriptions after the exercise.</p>
 <hr />
 <h2 id="what-i-learned">What I learned</h2>
 <ul>
-<li>What a Launch Template is and how it differs from a Launch Configuration</li>
-<li>How ASG uses min/max/desired to manage instance count</li>
-<li>That ASG can span multiple AZs for high availability</li>
-<li>How to manually trigger scaling to test it</li>
+<li>SNS is a pub/sub service — one event can notify many subscribers at once</li>
+<li>Subscriptions must be confirmed before they receive messages</li>
+<li>CloudWatch alarms integrate directly with SNS for automated alerting</li>
+<li>Publishing a manual test message first is the fastest way to confirm the subscription works before relying on an alarm to trigger it</li>
 </ul>
 
 
