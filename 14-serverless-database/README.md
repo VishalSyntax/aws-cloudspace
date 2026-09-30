@@ -129,7 +129,7 @@ Without this, Lambda throws `AccessDeniedException` when trying to read or write
 
 ### 4. Connected Lambda to API Gateway
 
-Same process as Project 13 — create an HTTP API with GET and POST routes both pointing to `veriqta-db-handler`.
+Same process as Project 13 — create an HTTP API with GET and POST routes both pointing to `Vishal-db-handler`.
 
 1. API Gateway → **Create API** → **HTTP API** → **Build**
 2. Add integration: Lambda → `my-db-handler`
@@ -153,7 +153,7 @@ Copy the Invoke URL from the API page.
 **Write — POST request:**
 
 ```bash
-curl -X POST MY_API_ENDPOINT/tasks \
+curl -X POST https://phdcuegk68.execute-api.ap-south-1.amazonaws.com/tasks \
   -H "Content-Type: application/json" \
   -d '{"TASKID": "task-001", "title": "Learn DynamoDB", "status": "in-progress"}'
 ```
@@ -161,7 +161,7 @@ curl -X POST MY_API_ENDPOINT/tasks \
 **Read — GET request:**
 
 ```bash
-curl "MY_API_ENDPOINT/tasks?TASKID=task-001"
+curl "https://phdcuegk68.execute-api.ap-south-1.amazonaws.com/tasks?TASKID=task-001"
 ```
 
 To verify in the console: DynamoDB → Tables → `MY-TASKS` → **Explore table items** — the item should appear.
