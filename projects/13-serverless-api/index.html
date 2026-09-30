@@ -1256,7 +1256,7 @@
 <p>Thirteenth project. Connected API Gateway to a Lambda function to build a real HTTP API — no servers, no EC2, no load balancer. Created the Lambda function, built an HTTP API in API Gateway, wired them together, deployed it, and called the endpoint from a browser.</p>
 <h2 id="what-i-built">What I built</h2>
 <p>An HTTP API endpoint backed by a Lambda function. API Gateway sits in front and handles all the HTTP — when a GET request hits <code>/hello</code>, it invokes the Lambda function, which returns a JSON response. The whole thing deploys in minutes and scales automatically without any configuration.</p>
-<p><img alt="Architecture" src="./architecture/architecture.png" /></p>
+<p><img alt="Architecture" src="architecture/architecture.png" /></p>
 <h2 id="why-api-gateway">Why API Gateway</h2>
 <p>Lambda on its own has no HTTP interface — you can invoke it from the console or CLI but not from a browser or mobile app. API Gateway is the front door. It takes an HTTP request, routes it to the right Lambda function, and sends the response back to the caller. Together they form the core of a serverless backend — no servers to manage, no load balancers to configure, pay only for what gets called.</p>
 <h2 id="services-used">Services used</h2>

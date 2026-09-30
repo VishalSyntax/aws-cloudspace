@@ -1254,7 +1254,7 @@
 <p>Fourteenth project. Connected Lambda to DynamoDB to build a serverless database application — created a DynamoDB table, wrote a Lambda function using Boto3 to read and write items, attached the right IAM permissions, and wired it all together through API Gateway.</p>
 <h2 id="what-i-built">What I built</h2>
 <p>A fully serverless stack where API Gateway receives HTTP requests, Lambda processes them using Boto3, and DynamoDB stores the data. POST to write an item, GET to read it back. No EC2, no RDS, no servers to manage.</p>
-<p><img alt="Architecture" src="./architecture/architecture.png" /></p>
+<p><img alt="Architecture" src="architecture/architecture.png" /></p>
 <h2 id="why-dynamodb">Why DynamoDB</h2>
 <p>Every project before this that needed a database used RDS — a relational database running on a managed server. DynamoDB is different. It's a NoSQL key-value store that's fully serverless, scales automatically, and charges per request. For a Lambda-based backend it's the natural fit — both scale to zero, both scale up automatically, and neither needs a server running 24/7.</p>
 <h2 id="services-used">Services used</h2>

@@ -1234,7 +1234,7 @@
 <p>Eleventh project. Built a proper notification system using Amazon SNS — created a topic, added an email subscription, published a test message to verify delivery, then wired it to a CloudWatch alarm so the whole thing fires automatically when a condition is met.</p>
 <h2 id="what-i-built">What I built</h2>
 <p>An SNS topic with an email subscription connected to a CloudWatch alarm. When the alarm enters the In alarm state, SNS publishes a notification and the email arrives within seconds. I also published a manual test message first to confirm the subscription was working before relying on the alarm to trigger it.</p>
-<p><img alt="Architecture" src="./architecture/architecture.png" /></p>
+<p><img alt="Architecture" src="architecture/architecture.png" /></p>
 <h2 id="why-sns">Why SNS</h2>
 <p>CloudWatch can detect problems but it can't tell anyone about them on its own. SNS is the bridge — it takes an alarm state change and fans it out to whoever needs to know. One topic can notify an email address, a phone number, a Lambda function, and a webhook all at the same time. Setting this up means the system tells me when something is wrong instead of me having to watch dashboards.</p>
 <h2 id="services-used">Services used</h2>
