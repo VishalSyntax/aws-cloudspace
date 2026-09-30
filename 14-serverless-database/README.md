@@ -50,7 +50,6 @@ Every project before this that needed a database used RDS — a relational datab
 
 The partition key is the primary identifier — every item in the table must have a unique TASKID.
 
-> 📸 Screenshot required: DynamoDB table overview showing table name MY-TASKS, status Active, and partition key TASKID
 
 ![DynamoDB Table](./screenshots/01-dynamodb-table.png)
 
@@ -106,7 +105,6 @@ def lambda_handler(event, context):
 
 The table name comes from an environment variable — keeps configuration out of the code.
 
-> 📸 Screenshot required: Lambda function code tab showing the handler deployed, and the Configuration tab showing the TABLE_NAME environment variable set to MY-TASKS
 
 ![Lambda Function](./screenshots/02-lambda-function.png)
 
@@ -121,7 +119,6 @@ The table name comes from an environment variable — keeps configuration out of
 
 Without this, Lambda throws `AccessDeniedException` when trying to read or write to DynamoDB.
 
-> 📸 Screenshot required: IAM role for the Lambda function showing AmazonDynamoDBFullAccess attached in the permissions policies list
 
 ![IAM Permissions](./screenshots/03-iam-permissions.png)
 
@@ -142,7 +139,6 @@ Same process as Project 13 — create an HTTP API with GET and POST routes both 
 
 Copy the Invoke URL from the API page.
 
-> 📸 Screenshot required: API Gateway page showing the my-db-api with GET /tasks and POST /tasks routes listed and the Invoke URL visible
 
 ![API Gateway](./screenshots/04-api-gateway.png)
 
@@ -166,8 +162,6 @@ curl "https://phdcuegk68.execute-api.ap-south-1.amazonaws.com/tasks?TASKID=task-
 
 To verify in the console: DynamoDB → Tables → `MY-TASKS` → **Explore table items** — the item should appear.
 
-> 📸 Screenshot required: DynamoDB Explore items view showing the item written by Lambda with TASKID, title, and status visible
-
 ![DynamoDB Items](./screenshots/05-dynamodb-items.png)
 
 ---
@@ -179,11 +173,10 @@ To verify in the console: DynamoDB → Tables → `MY-TASKS` → **Explore table
 3. Sent a GET request — item returned as JSON
 4. Checked CloudWatch logs — Lambda execution confirmed
 
-> 📸 Screenshot required: Terminal showing the POST and GET curl commands with successful JSON responses
 
 ![Test Workflow](./screenshots/06-test-workflow.png)
 
-> 📸 Screenshot required: CloudWatch log stream showing Lambda reading and writing to DynamoDB with START/END/REPORT entries
+
 
 ![CloudWatch Logs](./screenshots/07-cloudwatch-logs.png)
 
