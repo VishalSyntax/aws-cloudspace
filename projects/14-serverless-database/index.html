@@ -13,10 +13,8 @@
       
       
       
-        <link rel="prev" href="../12-lambda-serverless-function/">
+        <link rel="prev" href="../13-serverless-api/">
       
-      
-        <link rel="next" href="../14-serverless-database/">
       
       
         
@@ -27,7 +25,7 @@
     
     
       
-        <title>13 · Serverless API - AWS Cloudspace</title>
+        <title>14 · Serverless Database - AWS Cloudspace</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#serverless-api" class="md-skip">
+        <a href="#serverless-database-application" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              13 · Serverless API
+              14 · Serverless Database
             
           </span>
         </div>
@@ -673,6 +671,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-serverless-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Serverless API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -692,7 +718,7 @@
   <span class="md-ellipsis">
     
   
-    13 · Serverless API
+    14 · Serverless Database
   
 
     
@@ -710,7 +736,7 @@
   <span class="md-ellipsis">
     
   
-    13 · Serverless API
+    14 · Serverless Database
   
 
     
@@ -747,10 +773,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-api-gateway" class="md-nav__link">
+  <a href="#why-dynamodb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why API Gateway
+        Why DynamoDB
       
     </span>
   </a>
@@ -792,10 +818,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-created-the-lambda-function" class="md-nav__link">
+  <a href="#1-created-the-dynamodb-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Created the Lambda function
+        1. Created the DynamoDB table
       
     </span>
   </a>
@@ -803,10 +829,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-created-the-http-api" class="md-nav__link">
+  <a href="#2-created-the-lambda-function" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Created the HTTP API
+        2. Created the Lambda function
       
     </span>
   </a>
@@ -814,10 +840,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-configured-the-route-and-deployed" class="md-nav__link">
+  <a href="#3-configured-iam-permissions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Configured the route and deployed
+        3. Configured IAM permissions
       
     </span>
   </a>
@@ -825,10 +851,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-called-the-api-from-a-browser" class="md-nav__link">
+  <a href="#4-connected-lambda-to-api-gateway" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Called the API from a browser
+        4. Connected Lambda to API Gateway
       
     </span>
   </a>
@@ -836,10 +862,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-tested-with-a-missing-route" class="md-nav__link">
+  <a href="#5-wrote-and-read-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Tested with a missing route
+        5. Wrote and read data
       
     </span>
   </a>
@@ -847,10 +873,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-reviewed-cloudwatch-logs" class="md-nav__link">
+  <a href="#6-verified-the-full-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Reviewed CloudWatch logs
+        6. Verified the full workflow
       
     </span>
   </a>
@@ -959,34 +985,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14-serverless-database/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    14 · Serverless Database
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1032,10 +1030,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-api-gateway" class="md-nav__link">
+  <a href="#why-dynamodb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why API Gateway
+        Why DynamoDB
       
     </span>
   </a>
@@ -1077,10 +1075,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-created-the-lambda-function" class="md-nav__link">
+  <a href="#1-created-the-dynamodb-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Created the Lambda function
+        1. Created the DynamoDB table
       
     </span>
   </a>
@@ -1088,10 +1086,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-created-the-http-api" class="md-nav__link">
+  <a href="#2-created-the-lambda-function" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Created the HTTP API
+        2. Created the Lambda function
       
     </span>
   </a>
@@ -1099,10 +1097,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-configured-the-route-and-deployed" class="md-nav__link">
+  <a href="#3-configured-iam-permissions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Configured the route and deployed
+        3. Configured IAM permissions
       
     </span>
   </a>
@@ -1110,10 +1108,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-called-the-api-from-a-browser" class="md-nav__link">
+  <a href="#4-connected-lambda-to-api-gateway" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Called the API from a browser
+        4. Connected Lambda to API Gateway
       
     </span>
   </a>
@@ -1121,10 +1119,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-tested-with-a-missing-route" class="md-nav__link">
+  <a href="#5-wrote-and-read-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Tested with a missing route
+        5. Wrote and read data
       
     </span>
   </a>
@@ -1132,10 +1130,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-reviewed-cloudwatch-logs" class="md-nav__link">
+  <a href="#6-verified-the-full-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Reviewed CloudWatch logs
+        6. Verified the full workflow
       
     </span>
   </a>
@@ -1252,13 +1250,13 @@
 
 
 
-<h1 id="serverless-api">Serverless API</h1>
-<p>Thirteenth project. Connected API Gateway to a Lambda function to build a real HTTP API — no servers, no EC2, no load balancer. Created the Lambda function, built an HTTP API in API Gateway, wired them together, deployed it, and called the endpoint from a browser.</p>
+<h1 id="serverless-database-application">Serverless Database Application</h1>
+<p>Fourteenth project. Connected Lambda to DynamoDB to build a serverless database application — created a DynamoDB table, wrote a Lambda function using Boto3 to read and write items, attached the right IAM permissions, and wired it all together through API Gateway.</p>
 <h2 id="what-i-built">What I built</h2>
-<p>An HTTP API endpoint backed by a Lambda function. API Gateway sits in front and handles all the HTTP — when a GET request hits <code>/hello</code>, it invokes the Lambda function, which returns a JSON response. The whole thing deploys in minutes and scales automatically without any configuration.</p>
+<p>A fully serverless stack where API Gateway receives HTTP requests, Lambda processes them using Boto3, and DynamoDB stores the data. POST to write an item, GET to read it back. No EC2, no RDS, no servers to manage.</p>
 <p><img alt="Architecture" src="./architecture/architecture.png" /></p>
-<h2 id="why-api-gateway">Why API Gateway</h2>
-<p>Lambda on its own has no HTTP interface — you can invoke it from the console or CLI but not from a browser or mobile app. API Gateway is the front door. It takes an HTTP request, routes it to the right Lambda function, and sends the response back to the caller. Together they form the core of a serverless backend — no servers to manage, no load balancers to configure, pay only for what gets called.</p>
+<h2 id="why-dynamodb">Why DynamoDB</h2>
+<p>Every project before this that needed a database used RDS — a relational database running on a managed server. DynamoDB is different. It's a NoSQL key-value store that's fully serverless, scales automatically, and charges per request. For a Lambda-based backend it's the natural fit — both scale to zero, both scale up automatically, and neither needs a server running 24/7.</p>
 <h2 id="services-used">Services used</h2>
 <table>
 <thead>
@@ -1269,12 +1267,20 @@
 </thead>
 <tbody>
 <tr>
+<td>DynamoDB</td>
+<td>NoSQL table that stores the application data</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>Processes requests and reads/writes to DynamoDB using Boto3</td>
+</tr>
+<tr>
 <td>API Gateway</td>
 <td>Receives HTTP requests and routes them to Lambda</td>
 </tr>
 <tr>
-<td>Lambda</td>
-<td>Processes the request and returns a JSON response</td>
+<td>IAM</td>
+<td>Grants Lambda permission to access DynamoDB</td>
 </tr>
 <tr>
 <td>CloudWatch Logs</td>
@@ -1296,113 +1302,145 @@
 <td>ap-south-1</td>
 </tr>
 <tr>
-<td>Function name</td>
-<td>vishal-api-handler</td>
+<td>DynamoDB table</td>
+<td>MY-TASKS</td>
+</tr>
+<tr>
+<td>Partition key</td>
+<td>TASKID (String)</td>
+</tr>
+<tr>
+<td>Lambda function</td>
+<td>my-db-handler</td>
 </tr>
 <tr>
 <td>API name</td>
-<td>vishal-api</td>
-</tr>
-<tr>
-<td>Route</td>
-<td>GET /hello</td>
+<td>my-db-api</td>
 </tr>
 <tr>
 <td>Log group</td>
-<td>/aws/lambda/vishal-api-handler</td>
+<td>/aws/lambda/my-db-handler</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="steps">Steps</h2>
-<h3 id="1-created-the-lambda-function">1. Created the Lambda function</h3>
+<h3 id="1-created-the-dynamodb-table">1. Created the DynamoDB table</h3>
+<ol>
+<li>Open the <strong>DynamoDB</strong> console</li>
+<li>Click <strong>Tables</strong> → <strong>Create table</strong></li>
+<li>On the Create table page:</li>
+<li>Table name: <code>MY-TASKS</code></li>
+<li>Partition key: <code>TASKID</code> — type <strong>String</strong></li>
+<li>Leave all other settings default (on-demand capacity)</li>
+<li>Click <strong>Create table</strong></li>
+<li>Wait for the table status to show <strong>Active</strong></li>
+</ol>
+<p>The partition key is the primary identifier — every item in the table must have a unique TASKID.</p>
+<p><img alt="DynamoDB Table" src="screenshots/01-dynamodb-table.png" /></p>
+<hr />
+<h3 id="2-created-the-lambda-function">2. Created the Lambda function</h3>
 <ol>
 <li>Open the <strong>Lambda</strong> console</li>
 <li>Click <strong>Functions</strong> → <strong>Create function</strong></li>
 <li>On the Create function page:</li>
 <li>Select <strong>Author from scratch</strong></li>
-<li>Function name: <code>vishal-api-handler</code></li>
+<li>Function name: <code>my-db-handler</code></li>
 <li>Runtime: <strong>Python 3.12</strong></li>
-<li>Architecture: <strong>x86_64</strong></li>
 <li>Permissions: <strong>Create a new role with basic Lambda permissions</strong></li>
 <li>Click <strong>Create function</strong></li>
-<li>In the code editor, replace the default code with:</li>
+<li>On the function page, click <strong>Configuration</strong> tab → <strong>Environment variables</strong> → <strong>Edit</strong> → <strong>Add environment variable</strong>:</li>
+<li>Key: <code>TABLE_NAME</code></li>
+<li>Value: <code>MY-TASKS</code></li>
+<li>Click <strong>Save</strong></li>
+<li>Back on the <strong>Code</strong> tab, replace the default code with:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">return</span> <span class="p">{</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s1">'body'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Hello from Lambda!'</span><span class="p">})</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">}</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">dynamodb</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">'dynamodb'</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'TABLE_NAME'</span><span class="p">])</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">method</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'requestContext'</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'method'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'POST'</span><span class="p">:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'body'</span><span class="p">,</span> <span class="s1">'</span><span class="si">{}</span><span class="s1">'</span><span class="p">))</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">table</span><span class="o">.</span><span class="n">put_item</span><span class="p">(</span><span class="n">Item</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">return</span> <span class="p">{</span><span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Item saved'</span><span class="p">})}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'GET'</span><span class="p">:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="n">params</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'queryStringParameters'</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">task_id</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'TASKID'</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">task_id</span><span class="p">:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            <span class="k">return</span> <span class="p">{</span><span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">'error'</span><span class="p">:</span> <span class="s1">'TASKID required'</span><span class="p">})}</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="s1">'TASKID'</span><span class="p">:</span> <span class="n">task_id</span><span class="p">})</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Item'</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="p">:</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            <span class="k">return</span> <span class="p">{</span><span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">'error'</span><span class="p">:</span> <span class="s1">'Not found'</span><span class="p">})}</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">return</span> <span class="p">{</span><span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">item</span><span class="p">)}</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">405</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">'error'</span><span class="p">:</span> <span class="s1">'Method not allowed'</span><span class="p">})}</span>
 </code></pre></div>
 <ol>
 <li>Click <strong>Deploy</strong></li>
 </ol>
-<p>The function must return a proper HTTP response object — <code>statusCode</code> and <code>body</code> are required. API Gateway reads these to build the HTTP response it sends back to the caller.</p>
-<p><img alt="Lambda Function" src="screenshots/01-lambda-function.png" /></p>
+<p>The table name comes from an environment variable — keeps configuration out of the code.</p>
+<p><img alt="Lambda Function" src="screenshots/02-lambda-function.png" /></p>
 <hr />
-<h3 id="2-created-the-http-api">2. Created the HTTP API</h3>
+<h3 id="3-configured-iam-permissions">3. Configured IAM permissions</h3>
 <ol>
-<li>Open the <strong>API Gateway</strong> console</li>
-<li>Click <strong>Create API</strong></li>
-<li>Under <strong>HTTP API</strong> click <strong>Build</strong></li>
-<li>On the Create an API page:</li>
-<li>Click <strong>Add integration</strong><ul>
-<li>Integration type: <strong>Lambda</strong></li>
-<li>Lambda function: select <code>vishal-api-handler</code></li>
-</ul>
-</li>
-<li>API name: <code>vishal-api</code></li>
-<li>Click <strong>Next</strong></li>
+<li>Open the <strong>IAM</strong> console</li>
+<li>Click <strong>Roles</strong> → search for the role created for <code>my-db-handler</code> → click it</li>
+<li>Click <strong>Add permissions</strong> → <strong>Attach policies</strong></li>
+<li>Search for <code>AmazonDynamoDBFullAccess</code> → tick it → <strong>Add permissions</strong></li>
 </ol>
-<p><img alt="API Gateway Create" src="screenshots/02-api-gateway-create.png" /></p>
+<p>Without this, Lambda throws <code>AccessDeniedException</code> when trying to read or write to DynamoDB.</p>
+<p><img alt="IAM Permissions" src="screenshots/03-iam-permissions.png" /></p>
 <hr />
-<h3 id="3-configured-the-route-and-deployed">3. Configured the route and deployed</h3>
-<p>Still in the API creation wizard:</p>
+<h3 id="4-connected-lambda-to-api-gateway">4. Connected Lambda to API Gateway</h3>
+<p>Same process as Project 13 — create an HTTP API with GET and POST routes both pointing to <code>my-db-handler</code>.</p>
 <ol>
-<li>On the <strong>Configure routes</strong> page:</li>
-<li>Method: <strong>GET</strong></li>
-<li>Resource path: <code>/hello</code></li>
-<li>Integration target: <code>vishal-api-handler</code> (already set from the previous step)</li>
-<li>Click <strong>Next</strong></li>
-<li>On the <strong>Define stages</strong> page:</li>
-<li>Stage name: <code>$default</code></li>
-<li>Auto-deploy: <strong>enabled</strong></li>
-<li>Click <strong>Next</strong> → <strong>Create</strong></li>
+<li>API Gateway → <strong>Create API</strong> → <strong>HTTP API</strong> → <strong>Build</strong></li>
+<li>Add integration: Lambda → <code>my-db-handler</code></li>
+<li>API name: <code>my-db-api</code></li>
+<li>Add two routes:</li>
+<li><strong>GET</strong> <code>/tasks</code></li>
+<li><strong>POST</strong> <code>/tasks</code></li>
+<li>Stage: <code>$default</code>, auto-deploy enabled</li>
+<li>Click <strong>Create</strong></li>
 </ol>
-<p>After creation, the <strong>Invoke URL</strong> appears at the top of the API page. The full endpoint to call is <code>YOUR_INVOKE_URL/hello</code>.</p>
-<p>Auto-deploy means any future changes to routes or integrations go live immediately — no manual deploy step needed.</p>
-<p><img alt="API Endpoint" src="screenshots/03-api-endpoint.png" /></p>
+<p>Copy the Invoke URL from the API page.</p>
+<p><img alt="API Gateway" src="screenshots/04-api-gateway.png" /></p>
 <hr />
-<h3 id="4-called-the-api-from-a-browser">4. Called the API from a browser</h3>
-<p>Opened a browser and went to <code>YOUR_INVOKE_URL/hello</code>.</p>
-<p>API Gateway received the GET request, forwarded it to Lambda, Lambda ran the handler, and the JSON response came back:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello from Lambda!"</span><span class="p">}</span>
+<h3 id="5-wrote-and-read-data">5. Wrote and read data</h3>
+<p><strong>Write — POST request:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://phdcuegk68.execute-api.ap-south-1.amazonaws.com/tasks<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"TASKID": "task-001", "title": "Learn DynamoDB", "status": "in-progress"}'</span>
 </code></pre></div>
-<p><img alt="API Response" src="screenshots/04-api-response.png" /></p>
-<hr />
-<h3 id="5-tested-with-a-missing-route">5. Tested with a missing route</h3>
-<p>Tried a path that doesn't exist:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>YOUR_INVOKE_URL/notfound
+<p><strong>Read — GET request:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span><span class="s2">"https://phdcuegk68.execute-api.ap-south-1.amazonaws.com/tasks?TASKID=task-001"</span>
 </code></pre></div>
-<p>API Gateway returned <code>{"message":"Not Found"}</code> with a <code>404</code> status automatically — no configuration needed for that.</p>
-<p><img alt="API Test" src="screenshots/05-api-test.png" /></p>
+<p>To verify in the console: DynamoDB → Tables → <code>MY-TASKS</code> → <strong>Explore table items</strong> — the item should appear.</p>
+<p><img alt="DynamoDB Items" src="screenshots/05-dynamodb-items.png" /></p>
 <hr />
-<h3 id="6-reviewed-cloudwatch-logs">6. Reviewed CloudWatch logs</h3>
+<h3 id="6-verified-the-full-workflow">6. Verified the full workflow</h3>
 <ol>
-<li>Open the <strong>CloudWatch</strong> console</li>
-<li>In the left sidebar click <strong>Log groups</strong></li>
-<li>Click <code>/aws/lambda/vishal-api-handler</code></li>
-<li>Open the latest log stream</li>
+<li>Sent a POST request — item created</li>
+<li>Checked DynamoDB console — item visible</li>
+<li>Sent a GET request — item returned as JSON</li>
+<li>Checked CloudWatch logs — Lambda execution confirmed</li>
 </ol>
-<p>Each API call creates a log entry showing the full event object that API Gateway sent to Lambda, the function output, duration, and memory used. Useful for debugging when the response isn't what's expected.</p>
-<p><img alt="CloudWatch Logs" src="screenshots/06-cloudwatch-logs.png" /></p>
+<p><img alt="Test Workflow" src="screenshots/06-test-workflow.png" /></p>
+<p><img alt="CloudWatch Logs" src="screenshots/07-cloudwatch-logs.png" /></p>
 <hr />
 <h3 id="7-cleaned-up">7. Cleaned up</h3>
 <ol>
-<li>API Gateway → <strong>APIs</strong> → tick <code>vishal-api</code> → <strong>Actions</strong> → <strong>Delete</strong> → confirm</li>
-<li>Lambda → <strong>Functions</strong> → tick <code>vishal-api-handler</code> → <strong>Actions</strong> → <strong>Delete</strong> → type <code>delete</code> to confirm → <strong>Delete</strong></li>
+<li>API Gateway → APIs → delete <code>my-db-api</code></li>
+<li>Lambda → Functions → tick <code>my-db-handler</code> → <strong>Actions</strong> → <strong>Delete</strong> → confirm</li>
+<li>DynamoDB → Tables → tick <code>MY-TASKS</code> → <strong>Delete</strong> → confirm</li>
 </ol>
 <hr />
 <h2 id="screenshots">Screenshots</h2>
@@ -1417,33 +1455,38 @@
 <tbody>
 <tr>
 <td>01</td>
-<td><code>screenshots/01-lambda-function.png</code></td>
-<td>Lambda code editor showing the handler deployed</td>
+<td><code>screenshots/01-dynamodb-table.png</code></td>
+<td>DynamoDB table created with status Active</td>
 </tr>
 <tr>
 <td>02</td>
-<td><code>screenshots/02-api-gateway-create.png</code></td>
-<td>HTTP API creation with Lambda integration configured</td>
+<td><code>screenshots/02-lambda-function.png</code></td>
+<td>Lambda function code and TABLE_NAME environment variable</td>
 </tr>
 <tr>
 <td>03</td>
-<td><code>screenshots/03-api-endpoint.png</code></td>
-<td>API Gateway page showing the Invoke URL and /hello route</td>
+<td><code>screenshots/03-iam-permissions.png</code></td>
+<td>IAM role with AmazonDynamoDBFullAccess attached</td>
 </tr>
 <tr>
 <td>04</td>
-<td><code>screenshots/04-api-response.png</code></td>
-<td>Browser showing the JSON response from the API</td>
+<td><code>screenshots/04-api-gateway.png</code></td>
+<td>API Gateway with GET and POST routes configured</td>
 </tr>
 <tr>
 <td>05</td>
-<td><code>screenshots/05-api-test.png</code></td>
-<td>404 response for an undefined route</td>
+<td><code>screenshots/05-dynamodb-items.png</code></td>
+<td>DynamoDB Explore items showing the written item</td>
 </tr>
 <tr>
 <td>06</td>
-<td><code>screenshots/06-cloudwatch-logs.png</code></td>
-<td>CloudWatch log stream showing Lambda invocation from API Gateway</td>
+<td><code>screenshots/06-test-workflow.png</code></td>
+<td>Terminal showing POST and GET requests with responses</td>
+</tr>
+<tr>
+<td>07</td>
+<td><code>screenshots/07-cloudwatch-logs.png</code></td>
+<td>CloudWatch logs showing Lambda execution</td>
 </tr>
 </tbody>
 </table>
@@ -1452,9 +1495,10 @@
 <hr />
 <h2 id="testing">Testing</h2>
 <ul>
-<li>Called <code>YOUR_INVOKE_URL/hello</code> in a browser and got <code>200 OK</code> with JSON body</li>
-<li>Tested a non-existent route and confirmed <code>404</code> response</li>
-<li>Verified Lambda logs appeared in CloudWatch after each call</li>
+<li>POST request created an item in DynamoDB</li>
+<li>GET request retrieved the item by TASKID</li>
+<li>Verified item visible in DynamoDB console</li>
+<li>Confirmed CloudWatch logs showed successful execution</li>
 </ul>
 <hr />
 <h2 id="things-that-can-go-wrong">Things that can go wrong</h2>
@@ -1468,45 +1512,45 @@
 </thead>
 <tbody>
 <tr>
-<td>500 Internal Server Error</td>
-<td>Lambda function threw an exception</td>
-<td>Checked CloudWatch logs for the traceback</td>
+<td>AccessDeniedException</td>
+<td>Lambda role missing DynamoDB permissions</td>
+<td>Attached AmazonDynamoDBFullAccess to the role</td>
 </tr>
 <tr>
-<td>403 Forbidden</td>
-<td>API Gateway couldn't invoke Lambda</td>
-<td>Checked the Lambda resource-based policy allows API Gateway</td>
+<td>ResourceNotFoundException</td>
+<td>Wrong table name in environment variable</td>
+<td>Checked TABLE_NAME matches the actual table name exactly</td>
 </tr>
 <tr>
-<td>No response in browser</td>
-<td>API not deployed</td>
-<td>Confirmed auto-deploy was enabled on the stage</td>
+<td>400 error on GET</td>
+<td>TASKID not in query string</td>
+<td>Added <code>?TASKID=task-001</code> to the URL</td>
 </tr>
 <tr>
-<td>Wrong response format</td>
-<td>Lambda not returning statusCode</td>
-<td>Made sure the handler returns <code>{'statusCode': 200, 'body': ...}</code></td>
+<td>Item not found</td>
+<td>Wrong TASKID or item not created</td>
+<td>Checked DynamoDB console for the item</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="security-considerations">Security considerations</h2>
 <ul>
-<li>HTTP APIs have no authentication by default — anyone with the URL can call it</li>
-<li>For production, add a JWT authorizer or IAM authorization on the route</li>
-<li>HTTPS is enforced by API Gateway automatically — no HTTP option</li>
+<li>Never hardcode AWS credentials in Lambda code — use the execution role</li>
+<li>In production, use a least-privilege policy instead of AmazonDynamoDBFullAccess</li>
+<li>Enable DynamoDB encryption at rest (enabled by default)</li>
 </ul>
 <hr />
 <h2 id="cost">Cost</h2>
-<p>API Gateway HTTP API: first 1 million requests per month free for 12 months. Lambda: first 1 million requests per month always free. For a test project the cost is effectively zero. Delete the API and function after the exercise.</p>
+<p>DynamoDB on-demand: pay per request — effectively zero for a test project. Lambda: first 1 million requests per month are free. Delete the table, function, and API after the exercise.</p>
 <hr />
 <h2 id="what-i-learned">What I learned</h2>
 <ul>
-<li>API Gateway is the HTTP front door for Lambda — without it, Lambda has no web interface</li>
-<li>The Lambda function must return <code>statusCode</code> and <code>body</code> — API Gateway uses these to build the HTTP response</li>
-<li>HTTP APIs are simpler and cheaper than REST APIs for basic use cases</li>
-<li>Auto-deploy means route and integration changes go live immediately</li>
-<li>Every API call is logged in CloudWatch automatically — no setup needed</li>
+<li>DynamoDB is a NoSQL key-value store — the partition key is the primary identifier for every item</li>
+<li>Boto3 is the Python SDK for AWS — <code>dynamodb.Table()</code> gives a clean interface for reads and writes</li>
+<li>Lambda needs explicit IAM permissions to access other AWS services — it doesn't get them automatically</li>
+<li>Environment variables keep configuration out of the code</li>
+<li>The full serverless stack (API Gateway + Lambda + DynamoDB) requires no servers at all</li>
 </ul>
 
 
