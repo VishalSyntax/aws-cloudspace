@@ -103,3 +103,97 @@ S3 automatically adds a resource-based policy to the Lambda function allowing S3
 ![S3 Event Notification](./screenshots/03-s3-event-notification.png)
 
 ---
+
+
+### 4. Uploaded a test file and verified in CloudWatch
+
+1. S3 → click the bucket → **Upload** → **Add files** → select any `.txt` file → **Upload**
+2. Open the **CloudWatch** console
+3. In the left sidebar click **Log groups**
+4. Click `/aws/lambda/my-file-processor`
+5. Open the latest log stream
+
+The log shows the bucket name, object key, and file size printed by the function — confirming Lambda was triggered automatically by the upload.
+
+
+![CloudWatch Logs](./screenshots/04-cloudwatch-logs.png)
+
+---
+
+### 5. Checked the Lambda resource-based policy
+
+If Lambda is not triggered after uploading:
+
+1. Lambda → Functions → 'my-file-processor` → **Configuration** tab → **Resource-based policy statements**
+2. Confirm S3 has permission to invoke the function
+3. Also check: S3 bucket and Lambda must be in the **same region**
+
+
+![Resource Policy](./screenshots/05-resource-policy.png)
+
+---
+
+### 6. Cleaned up
+
+1. Lambda → Functions → tick `my-file-processor` → **Actions** → **Delete** → confirm
+2. S3 → tick the bucket → **Empty** → confirm → then **Delete** → confirm
+
+---
+
+## Screenshots
+
+| # | File | Description |
+|---|------|-------------|
+| 01 | `screenshots/01-s3-bucket.png` | S3 bucket created with Block Public Access enabled |
+| 02 | `screenshots/02-lambda-function.png` | Lambda function code showing the S3 event handler |
+| 03 | `screenshots/03-s3-event-notification.png` | S3 event notification configured with Lambda destination |
+| 04 | `screenshots/04-cloudwatch-logs.png` | CloudWatch logs showing bucket name, object key, and file size |
+| 05 | `screenshots/05-resource-policy.png` | Lambda resource-based policy showing S3 invoke permission |
+
+## Commands
+
+See [commands/commands.md](./commands/commands.md)
+
+---
+
+## Testing
+
+- Uploaded a test file to the S3 bucket
+- Verified Lambda was triggered automatically
+- Confirmed CloudWatch logs showed the bucket name, object key, and file size
+
+---
+
+## Things that can go wrong
+
+| Problem | What caused it | How I fixed it |
+|---------|----------------|----------------|
+| Lambda not triggered | Event notification not saved correctly | Re-checked S3 event notification configuration |
+| Permission denied | S3 can't invoke Lambda | Checked Lambda resource-based policy statements |
+| No logs in CloudWatch | Lambda not invoked at all | Verified the event notification points to the right function |
+| Wrong region error | Bucket and Lambda in different regions | Used the same region for both |
+
+---
+
+## Security considerations
+
+- S3 bucket stays private — no public access needed for this workflow
+- Lambda execution role only needs CloudWatch Logs write permission for this project
+- If Lambda needs to read the file content, add `s3:GetObject` to the execution role
+
+---
+
+## Cost
+
+S3 event notifications are free. Lambda: first 1 million requests per month are free. S3 storage is minimal for test files. Delete the bucket and function after the exercise.
+
+---
+
+## What I learned
+
+- S3 can trigger Lambda automatically when files are uploaded — no polling needed
+- The S3 event object passed to Lambda contains all the metadata about the uploaded file
+- S3 automatically adds the Lambda invoke permission when configuring the event notification
+- The bucket and Lambda function must be in the same region for the trigger to work
+- This pattern is the foundation of serverless file processing pipelines
+
