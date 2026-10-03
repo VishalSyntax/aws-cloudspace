@@ -25,10 +25,10 @@ Lambda can be triggered by dozens of AWS services — S3 is one of the most comm
 | Resource | Value |
 |----------|-------|
 | Region | ap-south-1 |
-| S3 bucket | veriqta-file-processing |
-| Lambda function | veriqta-file-processor |
+| S3 bucket | my-file-processing-s3 |
+| Lambda function | my-file-processor |
 | Event type | s3:ObjectCreated:* |
-| Log group | /aws/lambda/veriqta-file-processor |
+| Log group | /aws/lambda/my-file-processor |
 
 ---
 
@@ -39,7 +39,7 @@ Lambda can be triggered by dozens of AWS services — S3 is one of the most comm
 1. Open the **S3** console
 2. Click **Create bucket**
 3. On the Create bucket page:
-   - Bucket name: something globally unique (e.g. `my-file-processing-s3`)
+   - Bucket name: my-file-processing-s3
    - Region: same region as the Lambda function
    - Block all public access: **leave enabled**
    - Leave everything else default
@@ -107,7 +107,7 @@ S3 automatically adds a resource-based policy to the Lambda function allowing S3
 
 ### 4. Uploaded a test file and verified in CloudWatch
 
-1. S3 → click the bucket → **Upload** → **Add files** → select any `.txt` file → **Upload**
+1. S3 → click the bucket → **Upload** → **Add files** → selected any `s3-file.txt` file → **Upload**
 2. Open the **CloudWatch** console
 3. In the left sidebar click **Log groups**
 4. Click `/aws/lambda/my-file-processor`
