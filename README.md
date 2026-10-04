@@ -21,8 +21,11 @@ A structured AWS learning path — 20 projects from beginner to advanced, all bu
 | 9 | Load Balancer | ALB, EC2, Target Groups | ✅ Completed | [👁️](./09-load-balancer/README.md) |
 | 10 | S3 + CloudFront CDN | S3, CloudFront | ✅ Completed | [👁️](./10-s3-cloudfront/README.md) |
 | 11 | Create an SNS Notification System | SNS, CloudWatch | ✅ Completed | [👁️](./11-sns-notification-system/README.md) |
-| 12 | Build Your First Serverless Function with Lambda | Lambda, IAM, CloudWatch | Not Started | [👁️](./12-lambda-serverless-function/README.md) |
+| 12 | Build Your First Serverless Function with Lambda | Lambda, IAM, CloudWatch | ✅ Completed | [👁️](./12-lambda-serverless-function/README.md) |
 | 13 | Build a Serverless API | API Gateway, Lambda, CloudWatch | ✅ Completed | [👁️](./13-serverless-api/README.md) |
-| 14 | Build a Simple Serverless Database Application | DynamoDB, Lambda, API Gateway, IAM | In Progrss | [👁️](./14-serverless-database/README.md) |
-| 15 | Create an S3 File Processing Workflow | S3, Lambda, CloudWatch | Not Started | [👁️](./15-s3-file-processing/README.md) |
-| 16 | Create a Private S3 Website with CloudFront | S3, CloudFront, OAC | Not Started | [👁️](./16-private-s3-cloudfront/README.md) |
+| 14 | Build a Simple Serverless Database Application | DynamoDB, Lambda, API Gateway, IAM | ✅ Completed | [👁️](./14-serverless-database/README.md) |
+| 15 | Create an S3 File Processing Workflow | S3, Lambda, CloudWatch | ✅ Completed | [👁️](./15-s3-file-processing/README.md) |
+| 16 | Create a Private S3 Website with CloudFront | S3, CloudFront, OAC | In Progrss | [👁️](./16-private-s3-cloudfront/README.md) |
+| 17 | Deploy Infrastructure with AWS CloudFormation | CloudFormation, EC2, S3 | Not Started | [👁️](./17-cloudformation/README.md) |
+| 18 | Build a Simple AWS Backup Project | EC2, EBS, EBS Snapshots | Not Started | [👁️](./18-aws-backup/README.md) |
+| 19 | Troubleshoot a Broken AWS Application | EC2, VPC, ALB, Security Groups | Not Started | [👁️](./19-troubleshoot-aws-application/README.md) |
