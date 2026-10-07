@@ -25,8 +25,8 @@ Project 2 made the S3 bucket public to host a website. That works but it's not t
 | Resource | Value |
 |----------|-------|
 | Region | ap-south-1 |
-| S3 bucket | vishal-private-site-2 |
-| CloudFront domain | (    ) |
+| S3 bucket | vishal-private-site- |
+| CloudFront domain | d3jb5isopx2b5n.cloudfront.net |
 | Default root object | index.html |
 | Viewer protocol | Redirect HTTP to HTTPS |
 
@@ -55,21 +55,40 @@ Do not enable static website hosting on the bucket — CloudFront handles that.
 ### 2. Created the CloudFront distribution with OAC
 
 1. Open the **CloudFront** console
-2. Click **Distributions** → **Create distribution**
-3. On the Create distribution page:
-   - Origin domain: select the S3 bucket from the dropdown (choose the S3 bucket, not the static website endpoint)
-   - Origin access: select **Origin access control settings (recommended)**
-     - Click **Create new OAC**
-     - Name: leave default
-     - Signing behavior: **Sign requests (recommended)**
-     - Click **Create**
-   - Default root object: `index.html`
-   - Viewer protocol policy: **Redirect HTTP to HTTPS**
-   - Price class: **Use only North America and Europe**
-   - Leave everything else default
-4. Click **Create distribution**
+2. Click **Create a CloudFront distribution**
 
-After creation, CloudFront shows a yellow banner: *"The S3 bucket policy needs to be updated"* — copy the policy from there.
+**Origin section:**
+- Origin domain: click the field and select the S3 bucket from the dropdown — it shows as `vishal-private-site.s3.ap-south-1.amazonaws.com`
+- A prompt may appear saying *"Use website endpoint"* — click **Use S3 bucket** (not the website endpoint)
+- Origin path: leave empty
+- Name: leave as auto-filled
+- Origin access: select **Origin access control settings (recommended)**
+  - Click **Create new OAC**
+  - Name: leave default (auto-filled with the bucket name)
+  - Signing behavior: **Sign requests (recommended)**
+  - Click **Create**
+- The OAC name now appears selected under Origin access control
+
+**Default cache behavior section:**
+- Viewer protocol policy: **Redirect HTTP to HTTPS**
+- Allowed HTTP methods: **GET, HEAD**
+- Leave everything else default
+
+**Web Application Firewall (WAF) section:**
+- Select **Do not enable security protections** (free option for this project)
+
+**Settings section:**
+- Price class: **Use only North America and Europe**
+- Leave everything else default
+
+3. Click **Create distribution**
+
+After creation, a green banner appears: *"Successfully created new distribution"*. Below it there's also a notice saying the S3 bucket policy needs to be updated — click **Copy policy** button in that notice to copy it to clipboard.
+
+Now set the default root object (this option is not shown during creation — it's set after):
+1. Click into the distribution → **General** tab → scroll down to **Settings** → click **Edit**
+2. Find **Default root object** → type `index.html`
+3. Click **Save changes**
 
 
 ![CloudFront Distribution](./screenshots/02-cloudfront-distribution.png)
@@ -79,8 +98,8 @@ After creation, CloudFront shows a yellow banner: *"The S3 bucket policy needs t
 ### 3. Updated the S3 bucket policy
 
 1. Open the **S3** console → click the bucket name
-2. Click the **Permissions** tab → **Bucket policy** → **Edit**
-3. Paste the policy copied from the CloudFront banner in step 2
+2. Click the **Permissions** tab → scroll down to **Bucket policy** → click **Edit**
+3. Paste the policy copied from the CloudFront notice in Step 2 (it's already in the clipboard)
 4. Click **Save changes**
 
 The policy allows only this specific CloudFront distribution to read objects from the bucket — nothing else.
@@ -102,9 +121,9 @@ The policy allows only this specific CloudFront distribution to read objects fro
 
 ### 5. Tested the site
 
-1. Copy the **Domain name** from the CloudFront distribution page (e.g. `xxxx.cloudfront.net`)
+1. Copy the **Domain name** from the CloudFront distribution page 
 2. Open it in a browser — the website loads over HTTPS
-3. Try the S3 bucket URL directly — it returns `403 Forbidden` (correct, the bucket is private)
+3. Try the S3 bucket URL directly — it returns `AccessDenied` (correct, the bucket is private)
 
 After updating files in S3, to clear the CloudFront cache:
 1. CloudFront → select the distribution → **Invalidations** tab → **Create invalidation**
@@ -114,7 +133,6 @@ After updating files in S3, to clear the CloudFront cache:
 
 ![CloudFront Test](./screenshots/05-cloudfront-test.png)
 
-> 📸 Screenshot required: Browser showing 403 Forbidden when accessing the S3 bucket URL directly
 
 ![S3 Access Denied](./screenshots/06-s3-access-denied.png)
 
@@ -152,7 +170,7 @@ See [commands/commands.md](./commands/commands.md)
 | 403 on CloudFront URL | Wrong distribution ARN in policy | Copied the exact ARN from the CloudFront distribution |
 | Old content showing | CloudFront cache | Created an invalidation for `/*` |
 | Can't delete distribution | Still enabled | Disabled it first, waited for status update, then deleted |
-| index.html not loading | Default root object not set | Set default root object to `index.html` in distribution settings |
+| index.html not loading | Default root object not set | Went to distribution → General tab → Settings → Edit → set Default root object to `index.html` |
 
 ---
 
