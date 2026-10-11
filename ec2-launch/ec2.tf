@@ -20,7 +20,7 @@ key_name	= aws_key_pair.deployer.key_name
     my-automate-micro       = "t2.micro"
     my-automate-medium = "t2.medium"
   })
-  
+  depends_on = [aws_security_group.allow_tls, aws_key_pair.deployer]
   ami = var.ec2_amiid
   user_data = file("install_nginx.sh")
   
