@@ -45,6 +45,8 @@ Resources:
           Value: vishal-cloudformation
         - Key: Environment
           Value: !Ref EnvironmentName
+        - Key: ManagedBy
+          Value: CloudFormation
 
   # EC2 Instance
   DemoInstance:
@@ -53,7 +55,10 @@ Resources:
       InstanceType: !Ref InstanceType
       ImageId: !Sub "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64}}"
       KeyName: !Ref KeyPairName
-      SubnetId: !Ref SubnetId
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: 0
+          SubnetId: !Ref SubnetId
       Tags:
         - Key: Name
           Value: !Sub "vishal-demo-${EnvironmentName}"
