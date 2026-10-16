@@ -21,6 +21,11 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Description: Name of an existing EC2 key pair for SSH access
 
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Default: subnet-02866279a14c9416d
+    Description: Subnet to launch the EC2 instance into
+
 Resources:
 
   # S3 Bucket
@@ -48,6 +53,7 @@ Resources:
       InstanceType: !Ref InstanceType
       ImageId: !Sub "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64}}"
       KeyName: !Ref KeyPairName
+      SubnetId: !Ref SubnetId
       Tags:
         - Key: Name
           Value: !Sub "vishal-demo-${EnvironmentName}"
