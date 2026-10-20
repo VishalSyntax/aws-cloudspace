@@ -25,7 +25,7 @@ A structured AWS learning path — 20 projects from beginner to advanced, all bu
 | 13 | Build a Serverless API | API Gateway, Lambda, CloudWatch | ✅ Completed | [👁️](./13-serverless-api/README.md) |
 | 14 | Build a Simple Serverless Database Application | DynamoDB, Lambda, API Gateway, IAM | ✅ Completed | [👁️](./14-serverless-database/README.md) |
 | 15 | Create an S3 File Processing Workflow | S3, Lambda, CloudWatch | ✅ Completed | [👁️](./15-s3-file-processing/README.md) |
-| 16 | Create a Private S3 Website with CloudFront | S3, CloudFront, OAC | In Progrss | [👁️](./16-private-s3-cloudfront/README.md) |
-| 17 | Deploy Infrastructure with AWS CloudFormation | CloudFormation, EC2, S3 | Not Started | [👁️](./17-cloudformation/README.md) |
-| 18 | Build a Simple AWS Backup Project | EC2, EBS, EBS Snapshots | Not Started | [👁️](./18-aws-backup/README.md) |
+| 16 | Create a Private S3 Website with CloudFront | S3, CloudFront, OAC | ✅ Completed | [👁️](./16-private-s3-cloudfront/README.md) |
+| 17 | Deploy Infrastructure with AWS CloudFormation | CloudFormation, EC2, S3 | ✅ Completed | [👁️](./17-cloudformation/README.md) |
+| 18 | Build a Simple AWS Backup Project | EC2, EBS, EBS Snapshots | In Progrss | [👁️](./18-aws-backup/README.md) |
 | 19 | Troubleshoot a Broken AWS Application | EC2, VPC, ALB, Security Groups | Not Started | [👁️](./19-troubleshoot-aws-application/README.md) |
