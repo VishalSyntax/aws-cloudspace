@@ -1,0 +1,85 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  vishal-demo-stack — Example CloudFormation template.
+  Creates an S3 bucket and an EC2 instance for learning purposes.
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: dev
+    Description: Environment name used for tagging resources
+
+  InstanceType:
+    Type: String
+    Default: t3.micro
+    AllowedValues:
+      - t3.micro
+      - t3.small
+    Description: EC2 instance type
+
+  KeyPairName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Name of an existing EC2 key pair for SSH access
+
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Default: subnet-02866279a14c9416d
+    Description: Subnet to launch the EC2 instance into
+
+Resources:
+
+  # S3 Bucket
+  DemoBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "vishal-demo-bucket-${EnvironmentName}-${AWS::AccountId}"
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Project
+          Value: vishal-cloudformation
+        - Key: Environment
+          Value: !Ref EnvironmentName
+        - Key: ManagedBy
+          Value: CloudFormation
+
+  # EC2 Instance
+  DemoInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Sub "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64}}"
+      KeyName: !Ref KeyPairName
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: 0
+          SubnetId: !Ref SubnetId
+      Tags:
+        - Key: Name
+          Value: !Sub "vishal-demo-${EnvironmentName}"
+        - Key: Project
+          Value: vishal-cloudformation
+        - Key: Environment
+          Value: !Ref EnvironmentName
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket created by this stack
+    Value: !Ref DemoBucket
+    Export:
+      Name: !Sub "${AWS::StackName}-BucketName"
+
+  InstanceId:
+    Description: EC2 instance ID
+    Value: !Ref DemoInstance
+    Export:
+      Name: !Sub "${AWS::StackName}-InstanceId"
+
+  InstancePublicIP:
+    Description: Public IP address of the EC2 instance
+    Value: !GetAtt DemoInstance.PublicIp

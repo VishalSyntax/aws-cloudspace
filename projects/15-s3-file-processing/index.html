@@ -1,0 +1,1478 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="20 hands-on AWS projects built through the console — from EC2 to three-tier architecture.">
+      
+      
+        <meta name="author" content="Vishal">
+      
+      
+      
+        <link rel="prev" href="../14-serverless-database/">
+      
+      
+        <link rel="next" href="../16-private-s3-cloudfront/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>15 · S3 File Processing - AWS Cloudspace</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#s3-file-processing-workflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AWS Cloudspace" class="md-header__button md-logo" aria-label="AWS Cloudspace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Cloudspace
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              15 · S3 File Processing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-ec2-web-server/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AWS Cloudspace" class="md-nav__button md-logo" aria-label="AWS Cloudspace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Cloudspace
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-ec2-web-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · EC2 Web Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-s3-static-website/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · S3 Static Website
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-secure-iam-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Secure IAM User
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-custom-vpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Custom VPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-ec2-custom-vpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · EC2 Inside Custom VPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-rds-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · RDS Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-two-tier-web-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Two-Tier Web App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-auto-scaling-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Auto Scaling Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-load-balancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Load Balancer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-cloudwatch-ec2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · CloudWatch EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-sns-notification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · SNS Notification System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-lambda-serverless-function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Lambda Serverless Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-serverless-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Serverless API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-serverless-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Serverless Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · S3 File Processing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · S3 File Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I built
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-private-s3-cloudfront/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Private S3 + CloudFront
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-cloudformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · CloudFormation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I built
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="s3-file-processing-workflow">S3 File Processing Workflow</h1>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+Fifteenth project. Made Lambda react automatically to S3 events — when a file is uploaded to an S3 bucket, S3 fires an event that triggers a Lambda function. No polling, no cron jobs, just an automatic reaction. Set up the bucket, configured the event notification, wrote the Lambda function, and verified it through CloudWatch logs.</p>
+<h2 id="what-i-built">What I built</h2>
+<h1 id="an-event-driven-file-processing-workflow-upload-a-file-to-s3-lambda-fires-automatically-logs-the-bucket-name-object-key-and-file-size-to-cloudwatch-the-whole-thing-is-triggered-by-the-upload-nothing-else-needs-to-happen">An event-driven file processing workflow. Upload a file to S3, Lambda fires automatically, logs the bucket name, object key, and file size to CloudWatch. The whole thing is triggered by the upload — nothing else needs to happen.</h1>
+<p>Fifteenth project. Wanted to see how Lambda reacts to S3 events automatically — upload a file, Lambda fires, no manual trigger needed. Set up the bucket, configured the event notification, wrote the function, and verified it through CloudWatch logs.</p>
+<h2 id="what-i-built_1">What I built</h2>
+<p>An event-driven file processing workflow. Upload a file to S3, Lambda fires automatically and logs the bucket name, object key, and file size to CloudWatch. Nothing else needs to happen — the upload is the trigger.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="Architecture" src="architecture/architecture.png" /></p>
+<h2 id="why-s3-event-triggers">Why S3 event triggers</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+Lambda can be triggered by dozens of AWS services — S3 is one of the most common. The pattern is everywhere: a file lands in S3, Lambda processes it, the result goes somewhere else. Image resizing, CSV parsing, log processing, virus scanning — all of it works this way. This project was about understanding how the trigger mechanism works before building anything more complex on top of it.
+=======
+Lambda can be triggered by dozens of AWS services and S3 is one of the most common. A file lands in S3, Lambda processes it, the result goes somewhere else — image resizing, CSV parsing, log processing. This project was about understanding how the trigger actually works before building anything more complex on top of it.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="services-used">Services used</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>What I used it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S3</td>
+<td>Stores files and fires events when objects are created</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>Automatically triggered by S3 events to process file metadata</td>
+</tr>
+<tr>
+<td>CloudWatch Logs</td>
+<td>Stores Lambda execution logs for verification</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resources-i-created">Resources I created</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Region</td>
+<td>ap-south-1</td>
+</tr>
+<tr>
+<td>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</td>
+<td></td>
+</tr>
+<tr>
+<td>S3 bucket</td>
+<td>my-file-processing-s3</td>
+</tr>
+<tr>
+<td>Lambda function</td>
+<td>my-file-processor</td>
+</tr>
+<tr>
+<td>Event type</td>
+<td>s3:ObjectCreated:*</td>
+</tr>
+<tr>
+<td>Log group</td>
+<td>/aws/lambda/my-file-processor</td>
+</tr>
+<tr>
+<td>=======</td>
+<td></td>
+</tr>
+<tr>
+<td>S3 bucket</td>
+<td>vishal-file-processing</td>
+</tr>
+<tr>
+<td>Lambda function</td>
+<td>vishal-file-processor</td>
+</tr>
+<tr>
+<td>Event type</td>
+<td>s3:ObjectCreated:*</td>
+</tr>
+<tr>
+<td>Log group</td>
+<td>/aws/lambda/vishal-file-processor</td>
+</tr>
+<tr>
+<td>&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="steps">Steps</h2>
+<h3 id="1-created-the-s3-bucket">1. Created the S3 bucket</h3>
+<ol>
+<li>Open the <strong>S3</strong> console</li>
+<li>Click <strong>Create bucket</strong></li>
+<li>On the Create bucket page:
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</li>
+<li>
+<h1 id="bucket-name-my-file-processing-s3">Bucket name: my-file-processing-s3</h1>
+</li>
+<li>Bucket name: something globally unique (e.g. <code>my-file-processing-s3</code>)<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>Region: same region as the Lambda function</li>
+<li>Block all public access: <strong>leave enabled</strong></li>
+<li>Leave everything else default</li>
+<li>Click <strong>Create bucket</strong></li>
+</ol>
+<h1 id="updated-upstream">&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</h1>
+<blockquote>
+<p>📸 Screenshot required: S3 bucket created showing the bucket name and Block Public Access enabled</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="S3 Bucket" src="screenshots/01-s3-bucket.png" /></p>
+<hr />
+<h3 id="2-created-the-lambda-function">2. Created the Lambda function</h3>
+<ol>
+<li>Open the <strong>Lambda</strong> console</li>
+<li>Click <strong>Functions</strong> → <strong>Create function</strong></li>
+<li>On the Create function page:</li>
+<li>Select <strong>Author from scratch</strong></li>
+<li>Function name: <code>my-file-processor</code></li>
+<li>Runtime: <strong>Python 3.12</strong></li>
+<li>Permissions: <strong>Create a new role with basic Lambda permissions</strong></li>
+<li>Click <strong>Create function</strong></li>
+<li>In the code editor, replace the default code with:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">event</span><span class="p">[</span><span class="s1">'Records'</span><span class="p">]:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">bucket</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">'s3'</span><span class="p">][</span><span class="s1">'bucket'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">key</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">'s3'</span><span class="p">][</span><span class="s1">'object'</span><span class="p">][</span><span class="s1">'key'</span><span class="p">]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">size</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">'s3'</span><span class="p">][</span><span class="s1">'object'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'size'</span><span class="p">,</span> <span class="s1">'unknown'</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File uploaded to bucket: </span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Object key: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Object size: </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> bytes"</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">'statusCode'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="s1">'Processed'</span><span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Click <strong>Deploy</strong></li>
+</ol>
+<h1 id="updated-upstream_1">&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</h1>
+<blockquote>
+<p>📸 Screenshot required: Lambda function code editor showing the S3 event handler deployed</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="Lambda Function" src="screenshots/02-lambda-function.png" /></p>
+<hr />
+<h3 id="3-configured-the-s3-event-notification">3. Configured the S3 event notification</h3>
+<ol>
+<li>Open the <strong>S3</strong> console → click the bucket name</li>
+<li>Click the <strong>Properties</strong> tab</li>
+<li>Scroll down to <strong>Event notifications</strong> → <strong>Create event notification</strong></li>
+<li>On the Create event notification page:</li>
+<li>Event name: <code>file-upload-trigger</code></li>
+<li>Event types: tick <strong>All object create events</strong> (<code>s3:ObjectCreated:*</code>)</li>
+<li>Destination: <strong>Lambda function</strong></li>
+<li>Lambda function: select <code>my-file-processor</code></li>
+<li>Click <strong>Save changes</strong></li>
+</ol>
+<p>S3 automatically adds a resource-based policy to the Lambda function allowing S3 to invoke it — no manual IAM step needed.</p>
+<h1 id="updated-upstream_2">&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</h1>
+<blockquote>
+<p>📸 Screenshot required: S3 bucket Properties tab showing the event notification configured with Lambda as the destination and event type s3:ObjectCreated:*</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="S3 Event Notification" src="screenshots/03-s3-event-notification.png" /></p>
+<hr />
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<h3 id="4-uploaded-a-test-file-and-verified-in-cloudwatch">4. Uploaded a test file and verified in CloudWatch</h3>
+<h1 id="1-s3-click-the-bucket-upload-add-files-selected-any-s3-filetxt-file-upload">1. S3 → click the bucket → <strong>Upload</strong> → <strong>Add files</strong> → selected any <code>s3-file.txt</code> file → <strong>Upload</strong></h1>
+<h3 id="4-uploaded-a-test-file-and-verified-in-cloudwatch_1">4. Uploaded a test file and verified in CloudWatch</h3>
+<ol>
+<li>S3 → click the bucket → <strong>Upload</strong> → <strong>Add files</strong> → select any <code>.txt</code> file → <strong>Upload</strong><blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>Open the <strong>CloudWatch</strong> console</li>
+<li>In the left sidebar click <strong>Log groups</strong></li>
+<li>Click <code>/aws/lambda/my-file-processor</code></li>
+<li>Open the latest log stream</li>
+</ol>
+<p>The log shows the bucket name, object key, and file size printed by the function — confirming Lambda was triggered automatically by the upload.</p>
+<h1 id="updated-upstream_3">&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</h1>
+<blockquote>
+<p>📸 Screenshot required: CloudWatch log stream showing the Lambda output with bucket name, object key, and file size from the upload</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="CloudWatch Logs" src="screenshots/04-cloudwatch-logs.png" /></p>
+<hr />
+<h3 id="5-checked-the-lambda-resource-based-policy">5. Checked the Lambda resource-based policy</h3>
+<p>If Lambda is not triggered after uploading:</p>
+<ol>
+<li>Lambda → Functions → 'my-file-processor` → <strong>Configuration</strong> tab → <strong>Resource-based policy statements</strong></li>
+<li>Confirm S3 has permission to invoke the function</li>
+<li>Also check: S3 bucket and Lambda must be in the <strong>same region</strong></li>
+</ol>
+<h1 id="updated-upstream_4">&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</h1>
+<blockquote>
+<p>📸 Screenshot required: Lambda resource-based policy showing S3 has permission to invoke the function</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="Resource Policy" src="screenshots/05-resource-policy.png" /></p>
+<hr />
+<h3 id="6-cleaned-up">6. Cleaned up</h3>
+<ol>
+<li>Lambda → Functions → tick <code>my-file-processor</code> → <strong>Actions</strong> → <strong>Delete</strong> → confirm</li>
+<li>S3 → tick the bucket → <strong>Empty</strong> → confirm → then <strong>Delete</strong> → confirm</li>
+</ol>
+<hr />
+<h2 id="screenshots">Screenshots</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td><code>screenshots/01-s3-bucket.png</code></td>
+<td>S3 bucket created with Block Public Access enabled</td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>screenshots/02-lambda-function.png</code></td>
+<td>Lambda function code showing the S3 event handler</td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>screenshots/03-s3-event-notification.png</code></td>
+<td>S3 event notification configured with Lambda destination</td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>screenshots/04-cloudwatch-logs.png</code></td>
+<td>CloudWatch logs showing bucket name, object key, and file size</td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>screenshots/05-resource-policy.png</code></td>
+<td>Lambda resource-based policy showing S3 invoke permission</td>
+</tr>
+</tbody>
+</table>
+<h2 id="commands">Commands</h2>
+<p>See <a href="commands/commands/">commands/commands.md</a></p>
+<hr />
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<h2 id="testing">Testing</h2>
+<ul>
+<li>Uploaded a test file to the S3 bucket</li>
+<li>Verified Lambda was triggered automatically</li>
+<li>Confirmed CloudWatch logs showed the bucket name, object key, and file size</li>
+</ul>
+<hr />
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="things-that-can-go-wrong">Things that can go wrong</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What caused it</th>
+<th>How I fixed it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lambda not triggered</td>
+<td>Event notification not saved correctly</td>
+<td>Re-checked S3 event notification configuration</td>
+</tr>
+<tr>
+<td>Permission denied</td>
+<td>S3 can't invoke Lambda</td>
+<td>Checked Lambda resource-based policy statements</td>
+</tr>
+<tr>
+<td>No logs in CloudWatch</td>
+<td>Lambda not invoked at all</td>
+<td>Verified the event notification points to the right function</td>
+</tr>
+<tr>
+<td>Wrong region error</td>
+<td>Bucket and Lambda in different regions</td>
+<td>Used the same region for both</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="security-considerations">Security considerations</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+- S3 bucket stays private — no public access needed for this workflow
+- Lambda execution role only needs CloudWatch Logs write permission for this project
+- If Lambda needs to read the file content, add <code>s3:GetObject</code> to the execution role
+=======
+- S3 bucket stays private — no public access needed
+- Lambda execution role only needs CloudWatch Logs write permission here
+- If Lambda needs to actually read the file content, add <code>s3:GetObject</code> to the execution role</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr />
+<h2 id="cost">Cost</h2>
+<p>S3 event notifications are free. Lambda: first 1 million requests per month are free. S3 storage is minimal for test files. Delete the bucket and function after the exercise.</p>
+<hr />
+<h2 id="what-i-learned">What I learned</h2>
+<ul>
+<li>S3 can trigger Lambda automatically when files are uploaded — no polling needed</li>
+<li>The S3 event object passed to Lambda contains all the metadata about the uploaded file</li>
+<li>S3 automatically adds the Lambda invoke permission when configuring the event notification</li>
+<li>The bucket and Lambda function must be in the same region for the trigger to work</li>
+<li>This pattern is the foundation of serverless file processing pipelines
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</li>
+</ul>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
