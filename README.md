@@ -29,3 +29,5 @@ A structured AWS learning path — 20 projects from beginner to advanced, all bu
 | 17 | Deploy Infrastructure with AWS CloudFormation | CloudFormation, EC2, S3 | ✅ Completed | [👁️](./17-cloudformation/README.md) |
 | 18 | Build a Simple AWS Backup Project | EC2, EBS, EBS Snapshots | In Progrss | [👁️](./18-aws-backup/README.md) |
 | 19 | Troubleshoot a Broken AWS Application | EC2, VPC, ALB, Security Groups | Not Started | [👁️](./19-troubleshoot-aws-application/README.md) |
+| 20 | Final Project: Build a Beginner Production-Style AWS Architecture | EC2, RDS, ALB, VPC, ASG, S3, CloudWatch, IAM | Not Started | [👁️](./20-production-style-aws-architecture/README.md) |
+
