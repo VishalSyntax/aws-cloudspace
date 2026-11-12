@@ -55,7 +55,7 @@ curl -v http://localhost
 
 ```bash
 aws ec2 describe-security-groups \
-  --group-ids YOUR_SECURITY_GROUP_ID \
+  --group-ids sg-07bf7da58bea578d3  \
   --region ap-south-1
 ```
 
@@ -63,7 +63,7 @@ aws ec2 describe-security-groups \
 
 ```bash
 aws ec2 describe-route-tables \
-  --route-table-ids YOUR_ROUTE_TABLE_ID \
+  --route-table-ids rtb-07f3e70775fd93080 \
   --region ap-south-1
 ```
 
@@ -71,6 +71,6 @@ aws ec2 describe-route-tables \
 
 ```bash
 aws elbv2 describe-target-health \
-  --target-group-arn YOUR_TARGET_GROUP_ARN \
+  --target-group-arn arn:aws:elasticloadbalancing:ap-south-1:019540875443:targetgroup/vishal-troubleshoot-tg/b07eb3e29cbed402 \
   --region ap-south-1
 ```
